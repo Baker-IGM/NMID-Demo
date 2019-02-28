@@ -23,8 +23,6 @@ public class Touch : MonoBehaviour
         {
             pointerWorldPos.x = (pointerWorldPos.x < 0) ? 0 : Input.mousePosition.x / Screen.width;
             pointerWorldPos.y = (pointerWorldPos.y < 0) ? 0 : Input.mousePosition.y / Screen.height;
-
-            Debug.Log(Input.mousePosition);
         }
     }
 }
