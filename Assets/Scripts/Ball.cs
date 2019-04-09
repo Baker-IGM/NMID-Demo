@@ -1,37 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody))]
-[RequireComponent(typeof(LineRenderer))]
+[RequireComponent (typeof(LineRenderer))]
+[RequireComponent (typeof(SpringJoint))]
 public class Ball : MonoBehaviour
 {
     Rigidbody rBody;
-
-    [SerializeField]
-    float maxForce;
-    
+    SpringJoint sJoint;
     LineRenderer lineRenderer;
 
+    Transform anchorPoint;
+
     [SerializeField]
-    Transform anchorTransform;
+    [Range(1, 50)]
+    float maxForce;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         rBody = GetComponent<Rigidbody>();
 
-        lineRenderer = GetComponent<LineRenderer>();
+        sJoint = GetComponent<SpringJoint>();
 
-        lineRenderer.SetPosition(0, anchorTransform.position);
-        lineRenderer.SetPosition(1, transform.position);
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.SetPosition(0, transform.position);
+    }
+
+    public void SetAnchorPoint(Transform anchor)
+    {
+        anchorPoint = anchor;
+
+        sJoint.anchor = anchorPoint.position;
+
+        lineRenderer.SetPosition(1, anchorPoint.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        lineRenderer.SetPosition(1, transform.position);
+        lineRenderer.SetPosition(0, transform.position);
     }
 
     private void OnMouseUpAsButton()
