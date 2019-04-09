@@ -20,6 +20,9 @@ public class Anchor : MonoBehaviour
 
     void AddNewBall(Ball b)
     {
-        b.SetAnchorPoint(anchorPoint.transform);
+        if (b != null)
+        {
+            b.SetAnchorPoint(anchorPoint.transform);
+        }
     }
 }
