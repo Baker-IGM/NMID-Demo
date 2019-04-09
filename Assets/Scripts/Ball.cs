@@ -3,11 +3,14 @@
 [RequireComponent (typeof(Rigidbody))]
 [RequireComponent (typeof(LineRenderer))]
 [RequireComponent (typeof(SpringJoint))]
+[RequireComponent (typeof(Collider))]
 public class Ball : MonoBehaviour
 {
     Rigidbody rBody;
     SpringJoint sJoint;
     LineRenderer lineRenderer;
+    [SerializeField]
+    Collider collider;
 
     Transform anchorPoint;
 
@@ -24,6 +27,8 @@ public class Ball : MonoBehaviour
 
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.SetPosition(0, transform.position);
+
+        collider = GetComponent<Collider>();
     }
 
     public void SetAnchorPoint(Transform anchor)
@@ -43,6 +48,31 @@ public class Ball : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        rBody.AddForce(Random.Range(0, maxForce), Random.Range(0, maxForce), Random.Range(0, maxForce), ForceMode.Impulse);
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        collider.Raycast(ray, out hit, 100f);
+
+        Vector3 hitDir = transform.position - hit.point;
+        hitDir *= maxForce;
+
+        //  random foarce
+        rBody.AddForce(hitDir, ForceMode.Impulse);
+    }
+
+    Vector3 GetRandomForce()
+    {
+        return new Vector3(Random.Range(0, maxForce), Random.Range(0, maxForce), Random.Range(0, maxForce));
+    }
+
+    Vector3 GetHitDirection()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        collider.Raycast(ray, out hit, 100f);
+        Debug.Log(hit.point);
+
+        return transform.position - hit.point;
     }
 }
