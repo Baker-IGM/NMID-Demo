@@ -5,9 +5,6 @@ using UnityEngine;
 public class Touch : MonoBehaviour
 {
     [SerializeField]
-    float width, height;
-
-    [SerializeField]
     Vector3 pointerWorldPos;
 
     // Start is called before the first frame update
