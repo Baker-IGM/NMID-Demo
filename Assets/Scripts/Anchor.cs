@@ -7,22 +7,22 @@ public class Anchor : MonoBehaviour
     GameObject anchorPoint;
 
     [SerializeField]
-    List<Ball> balls;
+    List<Chain> chains;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach(Ball b in balls)
+        foreach(Chain c in chains)
         {
-            AddNewBall(b);
+            AddNewChain(c);
         }
     }
 
-    void AddNewBall(Ball b)
+    void AddNewChain(Chain c)
     {
-        if (b != null)
+        if (c != null)
         {
-            b.SetAnchorPoint(anchorPoint.transform);
+            c.SetAnchorPoint(anchorPoint.transform);
         }
     }
 }
