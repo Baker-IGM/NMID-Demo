@@ -2,7 +2,7 @@
 
 [RequireComponent (typeof(Rigidbody))]
 [RequireComponent (typeof(Collider))]
-public class Ball : MonoBehaviour
+public class Hitable : MonoBehaviour
 {
     Rigidbody rBody;
     Collider collider;
@@ -27,6 +27,8 @@ public class Ball : MonoBehaviour
         collider.Raycast(ray, out hit, 100f);
 
         Vector3 hitDir = GetHitDirection() * maxForce;
+
+        hitDir *= Input.GetAxis("Toggle");
 
         //  random foarce
         rBody.AddForce(hitDir, ForceMode.Impulse);
