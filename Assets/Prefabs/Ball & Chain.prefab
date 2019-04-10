@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2145754919066394262}
   - component: {fileID: 2145754919066394263}
   - component: {fileID: 928067923}
+  - component: {fileID: 243528926521332174}
   m_Layer: 0
   m_Name: Ball & Chain
   m_TagString: Untagged
@@ -123,7 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f6238c09477a0468f7b0c1092df02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 0}
   maxForce: 10
 --- !u!120 &2145754919066394263
 LineRenderer:
@@ -243,3 +243,15 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &243528926521332174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145754919066394268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa4c200a2ccb3f948bf10ff6df394c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
