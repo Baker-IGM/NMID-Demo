@@ -28,7 +28,7 @@ public class Hitable : MonoBehaviour
 
         Vector3 hitDir = GetHitDirection() * maxForce;
 
-        hitDir *= Input.GetAxis("Toggle");
+        hitDir *= (Input.GetAxis("Toggle") > 0) ? -1 : 1;
 
         //  random foarce
         rBody.AddForce(hitDir, ForceMode.Impulse);
